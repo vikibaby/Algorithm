@@ -26,7 +26,7 @@ public:
         while(head2){
             head2 = head2->next;
             len2 ++;
-        }
+        } //计算2个list的长度
         int add = 0;
         while(len1>0 && len2>0){
             if(len1 == len2){
@@ -35,7 +35,7 @@ public:
                 l2 = l2->next;
                 len1 --;
                 len2 --;
-            }
+            }//不考虑进位的加法
             else if(len1 > len2){
                 add = l1->val;
                 l1 = l1->next;
@@ -46,37 +46,37 @@ public:
                 l2 = l2->next;
                 len2 --;
             }
-
+//考虑多的list
             res = addFront(add, res);
         }
         return reverse(res);
     }
-    //insert node in the front
+    //insert node in the front 反转函数
     ListNode* addFront(int add, ListNode* res){
         ListNode* cur = new ListNode(add);
         cur->next = res;
         return cur;
     }
     //reverse list and  complete carry
-
+   //在反着的时候 进行进位和反转
     ListNode* reverse(ListNode* head){
         int carry = 0;
         ListNode* res = NULL;
         while(head){
             ListNode* cur = head;
-            head = head->next;
+            head = head->next; //66 67 73 74 反转
 
-            int sum = cur->val + carry;
+            int sum = cur->val + carry; 
             cur->val = sum % 10;
-            carry = sum / 10;
+            carry = sum / 10; //进位
 
             cur->next = res;
             res = cur;
         }
-        if(carry){
+        if(carry){ //加结点进位
             head = new ListNode(1);
             head->next = res;
-            res = head;
+            res = head; 
         }
         return res;
     }
