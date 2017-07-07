@@ -13,7 +13,7 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* res = new ListNode(0);
+        ListNode* res = new ListNode(0); //res始终指向头节点， head在移动。
         ListNode* head = res;
         int add = 0;
         while(l1 && l2){
@@ -30,7 +30,7 @@ public:
         if(!l2)
             head->next = l1;
 
-        ListNode* last = head;
+        ListNode* last = head; //last 指向短链表的 最后一个节点。
         head = head->next;
         while(head){
             head->val = head->val + add;
